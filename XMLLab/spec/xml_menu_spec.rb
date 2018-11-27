@@ -14,7 +14,7 @@ describe "XML menu" do
 
   it "should have no item with calories over 1000 except for the full breakfast" do
     @xml_menu.get_food_entries.each do |item|
-      if (@xml_menu.get_name_from(item).text == "Full Breakfast")
+      if (@xml_menu.get_name_from(item).text.downcase == "full breakfast")
         expect(@xml_menu.get_calories_from(item).text.to_i).to be >= 1000
       else
         expect(@xml_menu.get_calories_from(item).text.to_i).to be < 1000
