@@ -42,4 +42,16 @@ class GuiseppesMenu
     end
   end
 
+  def get_name_from(xml)
+    xml.xpath('name')
+  end
+
+  def get_calories_from(xml)
+    xml.xpath('calories')
+  end
+
+  def get_description_from(xml)
+    xml.xpath('description')
+  end
+
 end
