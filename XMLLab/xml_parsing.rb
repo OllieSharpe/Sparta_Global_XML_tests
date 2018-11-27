@@ -12,10 +12,6 @@ class GuiseppesMenu
     @menu.xpath('//breakfast_menu')
   end
 
-  def get_full_menu
-    @menu.xpath('//breakfast_menu')
-  end
-
   def get_food_entries
     @menu.xpath('//food')
   end
