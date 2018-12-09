@@ -8,25 +8,25 @@ describe "XML menu" do
 
   it "no price should be more than £10" do
     @xml_menu.get_prices.each do |price|
-      expect(price.text.to_i).to be < 10
+      expect(price.text.to_f).to be <= 10
     end
   end
 
   it "should have no item with calories over 1000 except for the full breakfast" do
     @xml_menu.get_food_entries.each do |item|
-      if (item.children[1].text == "Full Breakfast")
-        expect(item.children[7].text.to_i).to be >= 1000
+      if (@xml_menu.get_name_from(item).text.downcase == "full breakfast")
+        expect(@xml_menu.get_calories_from(item).text.to_i).to be >= 1000
       else
-        expect(item.children[7].text.to_i).to be < 1000
+        expect(@xml_menu.get_calories_from(item).text.to_i).to be < 1000
       end
     end
   end
 
   it "should have all waffle dishes stating you get two waffles" do
     @xml_menu.get_food_entries.each do |item|
-      if (@xml_menu.waffle_check(item.children[1].text))
-        expect(item.children[5].text.downcase).to include('two')
-        expect(item.children[5].text.downcase).to include('waffles')
+      if (@xml_menu.waffle_check(@xml_menu.get_name_from(item).text))
+        expect(@xml_menu.get_description_from(item).text.downcase).to include('two')
+        expect(@xml_menu.get_description_from(item).text.downcase).to include('waffles')
       end
     end
   end

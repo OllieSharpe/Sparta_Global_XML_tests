@@ -12,10 +12,6 @@ class GuiseppesMenu
     @menu.xpath('//breakfast_menu')
   end
 
-  def get_full_menu
-    @menu.xpath('//breakfast_menu')
-  end
-
   def get_food_entries
     @menu.xpath('//food')
   end
@@ -40,6 +36,18 @@ class GuiseppesMenu
     if (string.include?('Waffles') || string.include?('waffles'))
       return true
     end
+  end
+
+  def get_name_from(xml)
+    xml.xpath('name')
+  end
+
+  def get_calories_from(xml)
+    xml.xpath('calories')
+  end
+
+  def get_description_from(xml)
+    xml.xpath('description')
   end
 
 end
